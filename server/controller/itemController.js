@@ -12,10 +12,12 @@ const getList = async (req, res) => {
 }
 
 const createItem = async (req, res) => {
+    console.log(req.body);
     const { id, title } = req.body;
     const newItem = Item.build({ id, title })
     await newItem.save()
-    res.status(200).json("done")
+    const items = await Item.findAll()
+    res.status(200).json({ itemArray: items, msg: "done" })
 }
 const updateItem = async (req, res) => {
     try {
@@ -34,8 +36,9 @@ const updateItem = async (req, res) => {
     }
 }
 const deleteItem = async (req, res) => {
+    console.log(req.body);
     try {
-        const { id } = req.body;
+        const { id } = req.params;
         const item = await Item.findOne({
             where: {
                 id: id
@@ -44,7 +47,8 @@ const deleteItem = async (req, res) => {
 
         // console.log(item);
         await item.destroy()
-        res.status(201).json({ msg: `deleted successfully` })
+        const items = await Item.findAll()
+        res.status(201).json({ msg: `deleted successfully`, itemArray: items })
 
     } catch (err) {
         res.status(500).json({ err: err.message })

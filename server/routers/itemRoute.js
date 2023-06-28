@@ -6,7 +6,7 @@ router.get('/', getList)
 router.get('/:id', getItem)
 router.post('/', createItem)
 router.patch('/', updateItem)
-router.delete('/', deleteItem)
+router.delete('/:id', deleteItem)
 
 
 module.exports = router
