@@ -6,7 +6,8 @@ const App = () => {
 
 
   return (
-    <div className='bg-teal-200 min-h-screen overflow-auto flex justify-around items-center w-full p-10'>
+    <div className='bg-teal-200 min-h-screen overflow-auto flex flex-col justify-center items-center w-full p-10'>
+      <p className='mb-20 font-title text-8xl text-yellow-500 font-bold'>TODO-LIST</p>
       <ListTab />
     </div>
   )
